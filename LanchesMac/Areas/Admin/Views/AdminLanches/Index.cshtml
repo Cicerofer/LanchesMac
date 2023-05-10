@@ -1,13 +1,26 @@
-﻿@model IEnumerable<LanchesMac.Models.Lanche>
+﻿@model ReflectionIT.Mvc.Paging.pa<LanchesMac.Models.Lanche>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Produtos</h1>
+<h1>Lanches</h1>
 
+
+<form method="get" class="form-inline">
+
+    <input name="filter" class="form-control" placeholder="filtro"
+    value="@Model.RouteValue["Filter"]"/>
+
+    <button type="submit" class="btn btn-info"> Procurar</button>
+</form>
+
+Total de Lanches : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
 <p>
-    <a asp-action="Create">Criar Novo Lanche</a>
+    <a asp-action="Create">Criar Lanche</a>
 </p>
 <table class="table">
     <thead>
@@ -18,18 +31,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.DescricaoCurta)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DescricaoDetalhada)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Preco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagemUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagemThumbnailUrl)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.IsLanchePreferido)
             </th>
@@ -51,18 +56,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DescricaoCurta)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescricaoDetalhada)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagemUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImagemThumbnailUrl)
-            </td>
+            </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.IsLanchePreferido)
             </td>
