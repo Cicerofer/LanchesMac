@@ -1,4 +1,4 @@
-﻿@model ReflectionIT.Mvc.Paging.pa<LanchesMac.Models.Lanche>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<LanchesMac.Models.Lanche>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,6 +19,7 @@ Total de Lanches : @Model.TotalRecordCount
 <div>
     <vc:pager paging-list="@Model"></vc:pager>
 </div>
+
 <p>
     <a asp-action="Create">Criar Lanche</a>
 </p>
