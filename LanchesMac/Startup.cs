@@ -26,7 +26,8 @@ public class Startup
         services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
-
+        services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
+        services.Configure<ConfigurationImagens>(Configuration.GetSection("ConfigurationPastaImagens"));
 
         //services.Configure<IdentityOptions>(options =>
         //{
@@ -79,19 +80,22 @@ public class Startup
         else
         {
             app.UseExceptionHandler("/Home/Error");
+            //o valor HSTS padrão é de 30 dias
             app.UseHsts();
         }
         app.UseHttpsRedirection();
-
         app.UseStaticFiles();
+
         app.UseRouting();
+        app.UseSession();
+
 
         //cria os perfis
         seedUserRoleInitial.SeedRoles();
         //cria os usúario e atribui ao perfil
         seedUserRoleInitial.SeedUsers();
 
-        app.UseSession();
+      
 
         app.UseAuthentication();
         app.UseAuthorization();

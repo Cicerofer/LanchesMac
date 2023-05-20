@@ -33,7 +33,7 @@ namespace LanchesMac.Areas.Admin.Controllers
             ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
 
             var result = await relatorioVendasService.FindByDateAsync(minDate, maxDate);
-            return View(result);
+            return View(result); ;
         }
     }
 }
